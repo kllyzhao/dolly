@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <title>Dolly.</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" type = text/css href = "../static/css/main.css">
+</head>
+<body>
+    <div class = "container h-100">
+
+        <div class="row">
+            <div class = "col-md-4">
+                <nav class="navbar navbar-light bg-faded">
+                    <h1 class="navbar-brand mb-0">Dolly.</h1>
+                </nav>
+            </div>
+
+            <div class = "col-md-4"></div>
+
+            <div class = "col-md-4">
+                <div class = "top-pad">
+                    <img src = {{profile_pic}} class="avatar">
+                    <h1 class = "profile-name">{{display_name}}</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class = "row top-buffer">
+            <div class = "col-md-3 text-center">
+                <img class = "playlist-img rounded " src = "{{playlist_img}}">
+                <h4 style = "margin-top: 15px; font-weight:bolder; font-size: 35px;">{{playlist_name}}</h4>
+                <h1 style = "margin-left:10px; font-size: 14px;" class = "playlist-card-text">{{display_name}}</h1>
+                <h1 style = "margin-left:10px; font-size: 13px;" class = "playlist-card-text">{{num_tracks}} SONGS</h1>
+
+                <div id="exampleAccordion" data-children=".item" style = "{{display_failed_tracks}}">
+                  <div class="item">
+                    <a data-toggle="collapse" data-parent="#exampleAccordion" href="#exampleAccordion1" aria-expanded="true" aria-controls="exampleAccordion1">
+                        <u style = "color:red"><span style = "color:red; font-size: 13px;"> {{num_failed_tracks}} Song(s) Not Found </span></u>
+                    </a>
+                    <div id="exampleAccordion1" class="collapse" align = "left" role="tabpanel">
+
+                          <ul style = "list-style: none;">
+                              {% for track, album in failed_trackList.iteritems() %}
+
+                              <li class = "error-list"><span style = "font-size: 13px; font-weight: 500" >{{track[0]}}</span>
+                                  <br><span style = "font-size: 12px;">{{track[0]}} · {{album}}</span>
+                              </li>
+
+                              {% endfor %}
+                          </ul>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class = "col-md-9">
+              <ol style = "margin-left: 20px;">
+                  {% for track , album in trackList.iteritems() %}
+                  <li class = "regular-list"><span style = "font-size: 16px; font-weight: 500" >{{track[0]}}</span>
+                      <br><span style = "font-size: 13.5px;">{{track[1]}} · {{album}}</span>
+                  </li>
+                   {% endfor %}
+             </ol>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <title>Dolly.</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" type = text/css href = "../static/css/main.css">
+
+    <!-- As a heading -->
+    <title>11 folding cube</title>
+          <style type="text/css">
+
+        .sk-folding-cube {
+          margin: 15px auto;
+          width: 15px;
+          height: 15px;
+          position: relative;
+          -webkit-transform: rotateZ(45deg);
+                  transform: rotateZ(45deg); }
+          .sk-folding-cube .sk-cube {
+            float: left;
+            width: 50%;
+            height: 50%;
+            position: relative;
+            -webkit-transform: scale(1.1);
+                -ms-transform: scale(1.1);
+                    transform: scale(1.1); }
+          .sk-folding-cube .sk-cube:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+            -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+                    animation: sk-foldCubeAngle 2.4s infinite linear both;
+            -webkit-transform-origin: 100% 100%;
+                -ms-transform-origin: 100% 100%;
+                    transform-origin: 100% 100%; }
+          .sk-folding-cube .sk-cube2 {
+            -webkit-transform: scale(1.1) rotateZ(90deg);
+                    transform: scale(1.1) rotateZ(90deg); }
+          .sk-folding-cube .sk-cube3 {
+            -webkit-transform: scale(1.1) rotateZ(180deg);
+                    transform: scale(1.1) rotateZ(180deg); }
+          .sk-folding-cube .sk-cube4 {
+            -webkit-transform: scale(1.1) rotateZ(270deg);
+                    transform: scale(1.1) rotateZ(270deg); }
+          .sk-folding-cube .sk-cube2:before {
+            -webkit-animation-delay: 0.3s;
+                    animation-delay: 0.3s; }
+          .sk-folding-cube .sk-cube3:before {
+            -webkit-animation-delay: 0.6s;
+                    animation-delay: 0.6s; }
+          .sk-folding-cube .sk-cube4:before {
+            -webkit-animation-delay: 0.9s;
+                    animation-delay: 0.9s; }
+        @-webkit-keyframes sk-foldCubeAngle {
+          0%, 10% {
+            -webkit-transform: perspective(140px) rotateX(-180deg);
+                    transform: perspective(140px) rotateX(-180deg);
+            opacity: 0; }
+          25%, 75% {
+            -webkit-transform: perspective(140px) rotateX(0deg);
+                    transform: perspective(140px) rotateX(0deg);
+            opacity: 1; }
+          90%, 100% {
+            -webkit-transform: perspective(140px) rotateY(180deg);
+                    transform: perspective(140px) rotateY(180deg);
+            opacity: 0; } }
+        @keyframes sk-foldCubeAngle {
+          0%, 10% {
+            -webkit-transform: perspective(140px) rotateX(-180deg);
+                    transform: perspective(140px) rotateX(-180deg);
+            opacity: 0; }
+          25%, 75% {
+            -webkit-transform: perspective(140px) rotateX(0deg);
+                    transform: perspective(140px) rotateX(0deg);
+            opacity: 1; }
+          90%, 100% {
+            -webkit-transform: perspective(140px) rotateY(180deg);
+                    transform: perspective(140px) rotateY(180deg);
+            opacity: 0; } }
+          </style>
+</head>
+<body>
+
+
+    <div class = "container h-100">
+        
+        <div class="row">
+            <div class = "col-md-4">
+                <nav class="navbar navbar-light bg-faded">
+                    <h1 class="navbar-brand mb-0">Dolly.</h1>
+                </nav>
+            </div>
+            
+            <div class = "col-md-4"></div>
+            
+            <div class = "col-md-4">
+                <div class = "top-pad">
+                    <img src = {{profile_pic}} class="avatar">
+                    <h1 class = "profile-name">{{display_name}}</h1>
+                </div>
+            </div>
+        </div>
+        
+        <div class = "row top-buffer">
+            <div class ="col-sm-1"></div>
+            <div class = "col-sm-10 ">
+                <h1 class = "text-center tag-line">
+                    Switching to Spotify?
+                    <br>Bring your Apple Music playlists.
+                </h1>
+            </div>
+            <div class = "col-sm-1"></div>
+        </div>
+
+
+
+        <div class = "row regular-buffer">
+            <div class = "col-sm-3"></div>
+            <div class = "col-sm-6 ">
+                <p class = "text-center blurb">
+                    Select your playlist on Apple Music and select <b>File > Library > Export Playlist...</b>
+                    <br>Save playlist as an XML file and upload it here.
+                </p>
+
+            </div>
+            <div class = "col-sm-3"></div>
+        </div>
+  
+        <div class = "row">
+            <div class = "col-md-3"></div>
+
+                <div class="input-group col-md-6 justify-content-center text-center">
+
+                    <!--<label>
+                        <span id="new-btn" class="btn">
+                            Upload<input type="file" style="display: none;" accept = "file" name = "file" multiple>
+                        </span>
+                    </label>
+                    </form>
+                    <input id="filename" type="text" class="form-control" readonly placeholder="Upload Apple Music XML file here">
+                    -->
+                     <form id = "submit-form" action = "{{ url_for('upload') }}" method = "POST" enctype="multipart/form-data" class = "center_div">
+
+                            <label class = "btn btn-outline-dark btn-md" for = "my-file-selector">
+                                <input id = "my-file-selector" type = "file" name="file" accept="file" multiple hidden
+                                       onchange = "$('#upload-file-info').html(this.files[0].name); $('#loader').show(); setTimeout(function(){$('#submit-form').submit();}, 650);">
+                                    Choose file...
+                            </label>
+                    </form>
+
+                </div>
+            <div class = "col-md-3"></div>
+            
+        </div>
+
+        <div class = "row">
+            <div class = "col-md-3"></div>
+            <div class="col-md-6 text-center">
+
+                <p style = "color:#5e5e5e;font-style: italic; font-size: 13px;" class='label label-info' id="upload-file-info"></p>
+
+                <div class="sk-folding-cube" style = "display:none" id = "loader">
+                    <div class="sk-cube1 sk-cube"></div>
+                    <div class="sk-cube2 sk-cube"></div>
+                    <div class="sk-cube4 sk-cube"></div>
+                    <div class="sk-cube3 sk-cube"></div>
+                 </div>
+            </div>
+            <div class = "col-md-3"></div>
+
+        </div>
+    </div>
+    
+    
+
+</body>
+</html>
